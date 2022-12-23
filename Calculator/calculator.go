@@ -1,61 +1,68 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strconv"
+	"strings"
 )
-type Calculator struct {
-   first_number int
-   second_number int
-}
-func (c *Calculator)Add(){
-   fmt.Println("Addition of two numbers: ", c.first_number + c.second_number)
-}
-func (c *Calculator)Mul(){
-   fmt.Println("Multiplication of two numbers: ", c.first_number * c.second_number)
-}
-func (c *Calculator)Div(){
-	if c.second_number==0 {
-		fmt.Println("Can't divide by 0, Shame on you.")
-	} else{
-   		fmt.Println("Division of two numbers: ", c.first_number / c.second_number)
-	}
 
-}
-func (c *Calculator)Sub(){
-   fmt.Println("Subtraction of two numbers: ", c.first_number - c.second_number)
-}
-func main(){
-   var a, b int
-   fmt.Print("Enter the first number: ")
-   fmt.Scanf("%d", &a)
-   fmt.Print("Enter the second number: ")
-   fmt.Scanf("%d", &b)
-   cal := Calculator{
-      first_number: a,
-      second_number: b,
-   }
-   c:=1
-   for c>=1 {
-      fmt.Println("Enter 1 for Addition: ")
-      fmt.Println("Enter 2 for Multiplication: ")
-      fmt.Println("Enter 3 for Division: ")
-      fmt.Println("Enter 4 for Subtraction: ")
-      fmt.Print("Enter 5 for Exit: ")
-      fmt.Scanf("%d", &c)
-      switch c {
-         case 1:
-            cal.Add()
-         case 2:
-            cal.Mul()
-         case 3:
-            cal.Div()
-         case 4:
-            cal.Sub()
-         case 5:
-            c = 0
-            break
-         default:
-         fmt.Println("Enter valid number")
-      }      
-   }
+func main() {
+	reader := bufio.NewReader(os.Stdin)
+
+	for {
+		fmt.Print("Enter an equation (or 'q' to quit): ")
+		input, _ := reader.ReadString('\n')
+		input = strings.TrimSpace(input)
+
+		if input == "q" {
+			break
+		}
+
+		tokens := strings.Split(input, " ")
+		if len(tokens) != 3 {
+			fmt.Println("Invalid input. Please enter a valid equation in the format 'x operator y'.")
+			continue
+		}
+
+		x, err := strconv.ParseFloat(tokens[0], 64)
+		if err != nil {
+			fmt.Println("Invalid input. Please enter a valid equation in the format 'x operator y'.")
+			continue
+		}
+
+		y, err := strconv.ParseFloat(tokens[2], 64)
+		if err != nil {
+			fmt.Println("Invalid input. Please enter a valid equation in the format 'x operator y'.")
+			continue
+		}
+
+		var result float64
+		isCorrect :=true
+
+		switch tokens[1] {
+		case "+":
+			result = x + y
+		case "-":
+			result = x - y
+		case "*":
+			result = x * y
+		case "/":
+			if y==0{
+			isCorrect = false
+			break
+			}
+			result = x / y
+		default:
+			fmt.Println("Invalid operator. Please use one of the following operators: +, -, *, /.")
+			continue
+		}
+
+		if isCorrect== true{
+		fmt.Printf("Result: %.2f\n", result)
+		}else{
+		fmt.Println("Shame on you for dividing by 0, Shame. Ring the bells")
+		}
+	}
 }
