@@ -9,7 +9,8 @@ The repository is organized into directories by topic, with each directory conta
 - Basic Hello Go 
 - Calculator
 - Password Generator
-
+- Reading from files
+- Code Challenge examples
 
 ## Running the Code
 
