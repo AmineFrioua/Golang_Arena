@@ -1,0 +1,5 @@
+divide 10 0
+add 1 2
+multiply 12 10
+divide 29 3
+subtract 0 10
