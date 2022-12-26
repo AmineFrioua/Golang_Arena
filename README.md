@@ -9,8 +9,11 @@ The repository is organized into directories by topic, with each directory conta
 - Basic Hello Go 
 - Calculator
 - Password Generator
-- Reading from files
-- Code Challenge examples
+- opreations from files
+    - read from file
+    - do operations from file
+    - fix common typos from files
+- Code Challenge examples ( Check Leet code common problems)
 
 ## Running the Code
 
