@@ -14,6 +14,7 @@ The repository is organized into directories by topic, with each directory conta
     - do operations from file
     - fix common typos from files
 - Code Challenge examples ( Check Leet code common problems)
+- Sample CNN (convolutional neural network) implementation
 
 ## Running the Code
 
